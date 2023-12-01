@@ -9,11 +9,9 @@ void main(List<String> arguments) {
     0,
     (acc, e) =>
         acc +
-        toNumber(
-          [
-            firstDigit(e),
-            lastDigit(e),
-          ],
+        int.parse(
+          '${firstDigit(e)}'
+          '${lastDigit(e)}',
         ),
   );
 
@@ -25,11 +23,9 @@ void main(List<String> arguments) {
     0,
     (acc, e) =>
         acc +
-        toNumber(
-          [
-            firstDigitOrNumber(e),
-            lastDigitOrNumber(e),
-          ],
+        int.parse(
+          '${firstDigitOrNumber(e)}'
+          '${lastDigitOrNumber(e)}',
         ),
   );
 

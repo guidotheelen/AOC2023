@@ -74,7 +74,3 @@ int _getSpelledNumber(String s) {
   }
   return 0;
 }
-
-// Helpers
-
-int toNumber(List<int> digits) => digits.fold(0, (acc, e) => acc * 10 + e);
