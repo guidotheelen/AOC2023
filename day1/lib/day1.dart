@@ -19,8 +19,8 @@ int firstDigit(String s) {
 }
 
 int lastDigit(String s) {
-  var lastDigit = s.split('').lastWhere((e) => int.tryParse(e) != null);
-  return int.parse(lastDigit);
+  s = s.split('').reversed.join('');
+  return firstDigit(s);
 }
 
 // Part 2
@@ -38,29 +38,20 @@ Map<String, int> numbers = {
   'zero': 0,
 };
 
-int firstDigitOrNumber(String s) {
-  String buffer = '';
-  for (int i = 0; i < s.length; i++) {
-    if (int.tryParse(s[i]) != null) {
-      return int.parse(s[i]);
-    }
-    buffer += s[i];
-    if (_containsSpelledNumber(buffer)) {
-      return _spelledNumber(buffer);
-    }
-  }
-  return 0;
-}
+int firstDigitOrNumber(String s) => _digitOrNumber(s, 0, s.length - 1);
 
-int lastDigitOrNumber(String s) {
+int lastDigitOrNumber(String s) => _digitOrNumber(s, s.length - 1, 0);
+
+int _digitOrNumber(String s, int start, int end) {
   String buffer = '';
-  for (int i = s.length - 1; i >= 0; i--) {
+  int step = start < end ? 1 : -1;
+  for (int i = start; start < end ? i <= end : i >= end; i += step) {
     if (int.tryParse(s[i]) != null) {
       return int.parse(s[i]);
     }
-    buffer = s[i] + buffer;
+    buffer = start < end ? buffer + s[i] : s[i] + buffer;
     if (_containsSpelledNumber(buffer)) {
-      return _spelledNumber(buffer);
+      return _getSpelledNumber(buffer);
     }
   }
   return 0;
@@ -75,7 +66,7 @@ bool _containsSpelledNumber(String s) {
   return false;
 }
 
-int _spelledNumber(String s) {
+int _getSpelledNumber(String s) {
   for (var number in numbers.keys) {
     if (s.contains(number)) {
       return numbers[number]!;
@@ -83,20 +74,6 @@ int _spelledNumber(String s) {
   }
   return 0;
 }
-
-// int lastDigitOrNumber(String s) {
-//   String buffer = '';
-//   for (int i = s.length - 1; i >= 0; i--) {
-//     if (int.tryParse(s[i]) != null) {
-//       return int.parse(s[i]);
-//     }
-//     buffer = s[i] + buffer;
-//     if (numbers.containsKey(buffer)) {
-//       return numbers[buffer]!;
-//     }
-//   }
-//   return 0;
-// }
 
 // Helpers
 
