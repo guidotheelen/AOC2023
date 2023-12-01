@@ -7,28 +7,32 @@ int firstDigit(String s) =>
 int lastDigit(String s) => firstDigit(s.split('').reversed.join(''));
 
 // Part 2
-int firstDigitPro(String s) => _getDigit(s, 0, s.length - 1);
+int firstDigitPro(String s) => _getDigit(s);
 
-int lastDigitPro(String s) => _getDigit(s, s.length - 1, 0);
+int lastDigitPro(String s) => _getDigit(s, true);
 
-int _getDigit(String s, int start, int end) {
-  String buffer = '';
-  int step = start < end ? 1 : -1;
-  for (int i = start; start < end ? i <= end : i >= end; i += step) {
-    if (int.tryParse(s[i]) != null) {
-      return int.parse(s[i]);
+int _getDigit(String s, [bool reversed = false]) {
+  s = reversed ? s.reverse : s;
+
+  if (_getSpelled(s) == null) return firstDigit(s);
+
+  final buffer = StringBuffer();
+  for (String e in s.split('')) {
+    if (int.tryParse(e) != null) {
+      return int.parse(e);
+    } else {
+      buffer.write(e);
     }
-    buffer = start < end ? buffer + s[i] : s[i] + buffer;
-    String? spelledNumber = _spelledNumber(buffer);
-    if (spelledNumber != null) {
-      return _numbers[spelledNumber]!;
-    }
+
+    final s = _getSpelled(buffer.toString());
+    if (s != null) return _numbers[s]!;
   }
-  return 0;
+
+  return -1;
 }
 
-String? _spelledNumber(String s) =>
-    _numbers.keys.firstWhereOrNull((n) => s.contains(n));
+String? _getSpelled(String s) => _numbers.keys
+    .firstWhereOrNull((n) => s.contains(n) || s.contains(n.reverse));
 
 Map<String, int> _numbers = {
   'one': 1,
@@ -42,3 +46,7 @@ Map<String, int> _numbers = {
   'nine': 9,
   'zero': 0,
 };
+
+extension StringExtension on String {
+  String get reverse => split('').reversed.join('');
+}
