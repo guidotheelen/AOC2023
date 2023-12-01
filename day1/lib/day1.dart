@@ -1,15 +1,10 @@
 import 'package:collection/collection.dart';
 
 // Part 1
-int firstDigit(String s) {
-  var firstDigit = s.split('').firstWhere((e) => int.tryParse(e) != null);
-  return int.parse(firstDigit);
-}
+int firstDigit(String s) =>
+    int.parse(s.split('').firstWhere((e) => int.tryParse(e) != null));
 
-int lastDigit(String s) {
-  s = s.split('').reversed.join('');
-  return firstDigit(s);
-}
+int lastDigit(String s) => firstDigit(s.split('').reversed.join(''));
 
 // Part 2
 int firstDigitPro(String s) => _getDigit(s, 0, s.length - 1);
