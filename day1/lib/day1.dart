@@ -6,7 +6,7 @@ import 'package:day1/extensions.dart';
 int firstDigit(String s) =>
     int.parse(s.split('').firstWhere((e) => int.tryParse(e) != null));
 
-int lastDigit(String s) => firstDigit(s.split('').reversed.join(''));
+int lastDigit(String s) => firstDigit(s.reverse);
 
 // Part 2
 int firstDigitPro(String s) => _getDigit(s);
