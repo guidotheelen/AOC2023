@@ -1,16 +1,3 @@
-import 'dart:io';
-
-import 'package:path/path.dart' as p;
-
-// Input
-
-String readInput() {
-  var filePath = p.join(Directory.current.path, '.', 'input.txt');
-  return File(filePath).readAsStringSync();
-}
-
-List<String> parseInput(String input) => input.split('\n').toList();
-
 // Part 1
 
 int firstDigit(String s) {

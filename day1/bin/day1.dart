@@ -1,7 +1,9 @@
+import 'package:file_parser/file_parser.dart';
+
 import 'package:day1/day1.dart';
 
-void main(List<String> arguments) {
-  final input = parseInput(readInput());
+void main(List<String> arguments) async {
+  final input = await parseFile('input.txt');
 
   // Part 1
   final part1 = lineSum(input, firstDigit, lastDigit);
