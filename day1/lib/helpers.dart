@@ -1,14 +1,9 @@
 int lineSum(
   List<String> input,
-  int Function(String) first,
-  int Function(String) last,
+  int Function(String) firstDigit,
+  int Function(String) lastDigit,
 ) =>
     input.fold(
       0,
-      (acc, e) =>
-          acc +
-          int.parse(
-            '${first(e)}'
-            '${last(e)}',
-          ),
+      (acc, e) => acc + int.parse('${firstDigit(e)}${lastDigit(e)}'),
     );
