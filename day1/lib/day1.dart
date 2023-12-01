@@ -38,11 +38,11 @@ Map<String, int> numbers = {
   'zero': 0,
 };
 
-int firstDigitOrNumber(String s) => _digitOrNumber(s, 0, s.length - 1);
+int firstDigitPro(String s) => _getDigit(s, 0, s.length - 1);
 
-int lastDigitOrNumber(String s) => _digitOrNumber(s, s.length - 1, 0);
+int lastDigitPro(String s) => _getDigit(s, s.length - 1, 0);
 
-int _digitOrNumber(String s, int start, int end) {
+int _getDigit(String s, int start, int end) {
   String buffer = '';
   int step = start < end ? 1 : -1;
   for (int i = start; start < end ? i <= end : i >= end; i += step) {

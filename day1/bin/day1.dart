@@ -18,14 +18,13 @@ void main(List<String> arguments) {
   print('Part 1: $sum');
 
   // Part 2
-
   final sum2 = parsedInput.fold(
     0,
     (acc, e) =>
         acc +
         int.parse(
-          '${firstDigitOrNumber(e)}'
-          '${lastDigitOrNumber(e)}',
+          '${firstDigitPro(e)}'
+          '${lastDigitPro(e)}',
         ),
   );
 
