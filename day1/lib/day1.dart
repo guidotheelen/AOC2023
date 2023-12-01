@@ -1,5 +1,7 @@
 import 'package:collection/collection.dart';
 
+import 'package:day1/extensions.dart';
+
 // Part 1
 int firstDigit(String s) =>
     int.parse(s.split('').firstWhere((e) => int.tryParse(e) != null));
@@ -46,7 +48,3 @@ Map<String, int> _numbers = {
   'nine': 9,
   'zero': 0,
 };
-
-extension StringExtension on String {
-  String get reverse => split('').reversed.join('');
-}
